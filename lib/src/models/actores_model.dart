@@ -1,19 +1,13 @@
+class Cast {
+  List<Actor> actores = [];
 
-class Cast{
-  
-  List<Actor> actores = new List();
-
-  Cast.fromJsonList(List<dynamic> jsonList){
-    if(jsonList == null) return;
-
+  Cast.fromJsonList(List<dynamic> jsonList) {
     jsonList.forEach((item) {
       final actor = Actor.fromJsonMap(item);
       actores.add(actor);
     });
   }
-
 }
-
 
 class Actor {
   int castId;
@@ -36,7 +30,7 @@ class Actor {
     this.profilePath,
   });
 
-  Actor.fromJsonMap(Map<String, dynamic> json){
+  Actor.fromJsonMap(Map<String, dynamic> json) {
     castId = json['cast_id'];
     character = json['character'];
     creditId = json['credit_id'];
@@ -47,12 +41,11 @@ class Actor {
     profilePath = json['profile_path'];
   }
 
-  getFoto(){
-    if(profilePath == null){
+  getFoto() {
+    if (profilePath == null) {
       return 'https://instagram.inoutmkt.com.br/assets/img/no-avatar.png';
-    }else{
+    } else {
       return 'https://image.tmdb.org/t/p/w500/$profilePath';
     }
   }
-
 }
