@@ -1,13 +1,12 @@
-
 class Peliculas {
-  List<Pelicula> items = new List();
+  List<Pelicula> items = [];
 
   Peliculas();
 
-  Peliculas.fromJsonList(List<dynamic> jsonList){
-    if(jsonList == null) return;
+  Peliculas.fromJsonList(List<dynamic>? jsonList) {
+    if (jsonList == null) return;
 
-    for(var item in jsonList){
+    for (var item in jsonList) {
       final pelicula = new Pelicula.fromJsonMap(item);
       items.add(pelicula);
     }
@@ -15,22 +14,20 @@ class Peliculas {
 }
 
 class Pelicula {
-  String uniqueId;
-
-  int id;
-  bool video;
-  int voteCount;
-  double voteAverage;
-  String title;
-  double popularity;
-  String releaseDate;
-  String originalLanguage;
-  String originalTitle;
-  List<int> genreIds;
-  String backdropPath;
-  bool adult;
-  String overview;
-  String posterPath;
+  int? id;
+  bool? video;
+  int? voteCount;
+  double? voteAverage;
+  String? title;
+  double? popularity;
+  String? releaseDate;
+  String? originalLanguage;
+  String? originalTitle;
+  List<int>? genreIds;
+  String? backdropPath;
+  bool? adult;
+  String? overview;
+  String? posterPath;
 
   Pelicula({
     this.id,
@@ -49,7 +46,7 @@ class Pelicula {
     this.posterPath,
   });
 
-  Pelicula.fromJsonMap(Map<String, dynamic> json){
+  Pelicula.fromJsonMap(Map<String, dynamic> json) {
     id = json['id'];
     video = json['video'];
     voteCount = json['vote_count'];
@@ -65,22 +62,27 @@ class Pelicula {
     overview = json['overview'];
     posterPath = json['poster_path'];
   }
+  get uniqueId {
+    return '$id-tarjeta';
+  }
 
-  getPosterImg(){
-    if(posterPath == null){
+  get uniqueIdBanner {
+    return '$id-banner';
+  }
+
+  getPosterImg() {
+    if (posterPath == null) {
       return 'https://semantic-ui.com/images/wireframe/image.png';
-    }else{
+    } else {
       return 'https://image.tmdb.org/t/p/w500/$posterPath';
     }
   }
 
-  getBackgroundImg(){
-    if(posterPath == null){
+  getBackgroundImg() {
+    if (posterPath == null) {
       return 'https://semantic-ui.com/images/wireframe/image.png';
-    }else{
+    } else {
       return 'https://image.tmdb.org/t/p/w500/$backdropPath';
     }
   }
-
 }
-
